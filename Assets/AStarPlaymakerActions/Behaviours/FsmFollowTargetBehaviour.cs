@@ -139,7 +139,7 @@ namespace HutongGames.PlayMaker.Behaviours
 				directionOut = directionOut.normalized;
 				direction = direction.normalized;
 			}
-			var multiplier = (float)((1/Math.Exp(costDependendSpeed * path.path[currentWaypoint].penalty)) * speed * Time.fixedDeltaTime);
+			var multiplier = (float)((1/Math.Exp(costDependendSpeed * path.path[currentWaypoint].Penalty)) * speed * Time.fixedDeltaTime);
 			direction.x *= multiplier;
 			direction.y *= multiplier;
 			direction.y *= multiplier;
@@ -147,7 +147,7 @@ namespace HutongGames.PlayMaker.Behaviours
 			if (controller2 != null) 
 			{
 				controller2.Move(direction);
-				controller2.maxSpeed = (float)((1/Math.Exp(costDependendSpeed * path.path[currentWaypoint].penalty)) * speed); 
+				controller2.maxSpeed = (float)((1/Math.Exp(costDependendSpeed * path.path[currentWaypoint].Penalty)) * speed); 
 			}
 			else 
 			{ controller.SimpleMove(direction); }

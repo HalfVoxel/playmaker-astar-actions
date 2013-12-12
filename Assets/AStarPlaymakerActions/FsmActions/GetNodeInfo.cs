@@ -81,18 +81,18 @@ namespace HutongGames.PlayMaker.Pathfinding
 			var underlingNode = (node.Value as FsmGraphNode).Value;
 			
 			nodeIndex.Value = underlingNode.GetNodeIndex();			
-			penalty.Value = (int)underlingNode.penalty;			
-			area.Value = underlingNode.area;			
-			tags.Value = underlingNode.tags;			
-			walkable.Value = underlingNode.walkable;			
-			graphIndex.Value = underlingNode.graphIndex;			
+			penalty.Value = (int)underlingNode.Penalty;			
+			area.Value = (int)underlingNode.Area;		
+			tags.Value = (int)underlingNode.Tag;			
+			walkable.Value = underlingNode.Walkable;			
+			graphIndex.Value = (int)underlingNode.GraphIndex;			
 			position.Value = new Vector3(underlingNode.position.x,underlingNode.position.y,underlingNode.position.z);
 			position.Value *= Int3.PrecisionFactor;
 			
 			if (!connectedNodes.IsNone)
 			{ (connectedNodes.Value as FsmGraphNodes).Value = underlingNode.connections.ToList(); }
 
-		    var currentNavGraph = AstarPath.active.graphs[underlingNode.graphIndex];
+		    var currentNavGraph = AstarPath.active.graphs[underlingNode.GraphIndex];
             var newNavGraph = new FsmNavGraph { Value = currentNavGraph };
 		    graph.Value = newNavGraph;
 		}

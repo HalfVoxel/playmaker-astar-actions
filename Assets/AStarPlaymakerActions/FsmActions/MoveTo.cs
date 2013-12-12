@@ -615,7 +615,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 				direction = direction.normalized;
 			}
 			
-			outputSpeed.Value = (float)((1/Math.Exp(costDependendSpeed.Value * path.path[Math.Min(currentWaypoint,path.path.Count-1)].penalty)  ) * speed.Value);
+			outputSpeed.Value = (float)((1/Math.Exp(costDependendSpeed.Value * path.path[Math.Min(currentWaypoint,path.path.Count-1)].Penalty)  ) * speed.Value);
 			direction *= outputSpeed.Value; // 1/e^x for exponentially slower speed, but never 0 or negative or more than 1. Math classes were good for something afterall :D
 			
 			Move();

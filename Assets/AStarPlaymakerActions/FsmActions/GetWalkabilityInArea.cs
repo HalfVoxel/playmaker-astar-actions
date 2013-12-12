@@ -77,7 +77,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		private void GetWalkabilityForGridNode() 
 		{
             nodes = new List<GraphNode> { node };
-		    var graph = AstarPath.active.graphs[node.graphIndex] as GridGraph;
+		    var graph = AstarPath.active.graphs[node.GraphIndex] as GridGraph;
 			
 			var graphUpdateShape = new GraphUpdateShape(); 
 			if (useRealCollider.Value)
@@ -95,7 +95,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			{
 				for(var i=0; i < nodes.Count(); i++ )
 				{
-					if(nodes[i].walkable)
+					if(nodes[i].Walkable)
 					{ walkable.Value += 1; }
 				}
 			}
@@ -103,7 +103,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			{
 				for(var i=0; i < nodes.Count(); i++ )
 				{
-					if(nodes[i].walkable)
+					if(nodes[i].Walkable)
 					{ walkable.Value += 1; }
 					else
 					{ unwalkable.Value += 1; }
@@ -124,7 +124,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			}
 			else
 			{
-				var allNodes = AstarPath.active.graphs[node.graphIndex].nodes;
+				var allNodes = AstarPath.active.graphs[node.GraphIndex].nodes;
 				foreach (var currentNode in allNodes)
 				{ CheckNode(currentNode); }
 			}
@@ -141,7 +141,7 @@ namespace HutongGames.PlayMaker.Pathfinding
                 if ((!nodes.Contains(currentNode)) && normalisedNodePosition.IsInside(targetGameObject.collider)) // check if the node in question is both in the collider and NOT in the list already.
                 {
                     nodes.Add(currentNode);
-                    if (currentNode.walkable)
+                    if (currentNode.Walkable)
                     { walkable.Value += 1; }
                     else
                     { unwalkable.Value += 1; }
@@ -152,7 +152,7 @@ namespace HutongGames.PlayMaker.Pathfinding
                 if ((!nodes.Contains(currentNode)) && bounds.Contains(normalisedNodePosition)) // check if the node in question is both in the bounds and NOT in the list already.
                 {
                     nodes.Add(currentNode);
-                    if (currentNode.walkable)
+                    if (currentNode.Walkable)
                     { walkable.Value += 1; }
                     else
                     { unwalkable.Value += 1; }

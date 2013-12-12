@@ -74,7 +74,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			nodes = graph.GetNodesInArea(graphUpdateShape);
 			
 			foreach(var currentNode in nodes )
-			{ currentNode.walkable = walkability.Value; }
+			{ currentNode.Walkable = walkability.Value; }
 			
 			Debug.Log("i" + nodes.Count);
 		}	
@@ -99,12 +99,12 @@ namespace HutongGames.PlayMaker.Pathfinding
             if (useRealCollider.Value)
             {
                 if ((!nodes.Contains(currentNode)) && normalisedNodePosition.IsInside(targetGameObject.collider)) // check if the node in question is both in the collider and NOT in the list already.
-                { currentNode.walkable = walkability.Value; }
+                { currentNode.Walkable = walkability.Value; }
             }
             else
             {
                 if ((!nodes.Contains(currentNode)) && bounds.Contains(normalisedNodePosition)) // check if the node in question is both in the bounds and NOT in the list already.
-                { currentNode.walkable = walkability.Value; }
+                { currentNode.Walkable = walkability.Value; }
             }
         }
 	}

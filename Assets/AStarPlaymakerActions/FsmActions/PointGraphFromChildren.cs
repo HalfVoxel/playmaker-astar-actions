@@ -198,8 +198,8 @@ namespace HutongGames.PlayMaker.Pathfinding
 				var nnInfoNode = AstarPath.active.GetNearest(new Vector3 (pos.x,pos.y,pos.z)*Int3.PrecisionFactor, nnConstraint);
 				if (nnInfoNode.node != null) 
                 {
-					nnInfoNode.node.AddConnection(pointGraph.nodes[Count + i], cost.Value);
-					pointGraph.nodes[Count + i].AddConnection(nnInfoNode.node, cost.Value);
+					nnInfoNode.node.AddConnection(pointGraph.nodes[Count + i], (uint)cost.Value);
+					pointGraph.nodes[Count + i].AddConnection(nnInfoNode.node, (uint)cost.Value);
 				}
 			}
 		}	  

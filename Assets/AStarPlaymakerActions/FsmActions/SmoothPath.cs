@@ -1,5 +1,6 @@
 using HutongGames.PlayMaker.Pathfinding;
 using HutongGames.PlayMaker.Extensions;
+using Pathfinding;
 using UnityEngine;
 
 namespace HutongGames.PlayMaker.Pathfinding

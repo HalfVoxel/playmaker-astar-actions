@@ -73,7 +73,7 @@ namespace HutongGames.PlayMaker.Pathfinding
            {
                while (latestPos.x < maxPos.x)
                {
-                   walkability.Value = AstarPath.active.GetNearest(latestPos).node.walkable;
+                   walkability.Value = AstarPath.active.GetNearest(latestPos).node.Walkable;
                    pickPosition.Value = latestPos;
                    latestPos.x += deltaX;
                    Fsm.Event(nextNode);
@@ -103,7 +103,7 @@ namespace HutongGames.PlayMaker.Pathfinding
            {
                while (latestPos.x < maxPos.x)
                {
-                   walkability.Value = AstarPath.active.GetNearest(targetGameObject.transform.TransformPoint(latestPos)).node.walkable;
+                   walkability.Value = AstarPath.active.GetNearest(targetGameObject.transform.TransformPoint(latestPos)).node.Walkable;
                    pickPosition.Value = latestPos;
                    latestPos.x += deltaX;
                    Fsm.Event(nextNode);

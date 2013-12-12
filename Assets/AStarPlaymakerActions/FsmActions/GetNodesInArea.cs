@@ -64,7 +64,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		void UpdateNodesInGridGraph() // this is the optimized version. Other graphs cannot be optimised this way because they have irregular structures unfortunately. Still, we shouldn't miss on the advantages of this specific graph type, so I included it specifically.
 		{
             nodes = new List<GraphNode> { node };
-		    var graph = AstarPath.active.graphs[node.graphIndex] as GridGraph;
+		    var graph = AstarPath.active.graphs[node.GraphIndex] as GridGraph;
 			
 			var graphUpdateShape = new GraphUpdateShape(); 
 			if (useRealCollider.Value)
@@ -82,7 +82,7 @@ namespace HutongGames.PlayMaker.Pathfinding
                 var connected = new List<GraphNode>();
 				for(var i=0; i < nodes.Count(); i++ )
 				{
-					if(nodes[i].walkable)
+					if(nodes[i].Walkable)
 					{ connected.Add(nodes[i]); }
 				}
 				nodesOutput.Value = new FsmGraphNodes {Value = connected};

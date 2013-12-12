@@ -64,16 +64,16 @@ namespace HutongGames.PlayMaker.Pathfinding
             { throw new NullReferenceException("The node is null"); }
 			
 			if (!penalty.IsNone)
-			{ fsmNode.Value.penalty = (uint)penalty.Value; }
+			{ fsmNode.Value.Penalty = (uint)penalty.Value; }
 			
 			if (!tags.IsNone)
-			{ fsmNode.Value.tags = tags.Value; }
+			{ fsmNode.Value.Tag = (uint)tags.Value; }
 			
 			if (!walkable.IsNone) 
 			{
-				fsmNode.Value.walkable = walkable.Value;
-				fsmNode.Value.UpdateNeighbourConnections ();
-				fsmNode.Value.UpdateConnections ();
+				fsmNode.Value.Walkable = walkable.Value;
+				fsmNode.Value.UpdateNeighbourConnections();
+				fsmNode.Value.UpdateConnections();
 			}
 			
 			if (!position.IsNone)

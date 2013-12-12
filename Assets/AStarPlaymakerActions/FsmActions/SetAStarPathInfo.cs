@@ -68,7 +68,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			{ astarp.showGraphs = showGraphs.Value; }
 			
 			if(!lastUniqueAreaIndex.IsNone)
-			{ astarp.lastUniqueAreaIndex = lastUniqueAreaIndex.Value; }	
+			{ astarp.lastUniqueAreaIndex = (uint)lastUniqueAreaIndex.Value; }	
 
 			if (!astarData.IsNone)
             { astarp.graphs = astarData.GetNavGraphs(); }
