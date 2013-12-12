@@ -85,7 +85,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[ActionSection ("Nodes...s")]
 		[Tooltip("All nodes this graph contains. They are not the same type as the nodes from the path, though they are extensions")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		public FsmObject nodes;
 		
 		public FsmBool everyFrame;
@@ -122,7 +122,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			infoScreenOpen.Value = currentNavGraph.infoScreenOpen;
 			initialPenalty.Value = (int)currentNavGraph.initialPenalty;
 			name.Value = currentNavGraph.name;
-            nodes.Value = new FsmNodes { Value = currentNavGraph.nodes.ToList() };
+            nodes.Value = new FsmGraphNodes { Value = currentNavGraph.nodes.ToList() };
 			open.Value = currentNavGraph.open;
 			
 			if(graphType == GraphType.PointGraph && currentNavGraph as PointGraph != null)

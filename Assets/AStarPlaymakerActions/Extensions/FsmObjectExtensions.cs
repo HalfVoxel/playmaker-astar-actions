@@ -11,7 +11,7 @@ namespace HutongGames.PlayMaker.Extensions
             if (fsmObject == null || fsmObject.Value == null)
             { return null; }
 
-            if (fsmObject.Value is FsmNode)
+            if (fsmObject.Value is FsmGraphNode)
             { return GetNode(fsmObject); }
             if (fsmObject.Value is FsmGridNode)
             { return GetGridNode(fsmObject); }
@@ -42,8 +42,8 @@ namespace HutongGames.PlayMaker.Extensions
         public static PointGraph GetPointGraph(this FsmObject gameObject)
         { return (gameObject.Value as FsmPointGraph).Value; }
 
-        public static Node GetNode(this FsmObject gameObject)
-        { return (gameObject.Value as FsmNode).Value; }
+        public static GraphNode GetNode(this FsmObject gameObject)
+        { return (gameObject.Value as FsmGraphNode).Value; }
 
         public static GridNode GetGridNode(this FsmObject gameObject)
         { return (gameObject.Value as FsmGridNode).Value; }

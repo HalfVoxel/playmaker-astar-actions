@@ -22,7 +22,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		void GetNearestWalkableNode() 
         {
 			var nearest = AstarPath.active.GetNearest(Position.Value);
-			walkability.Value = nearest.node.walkable;
+			walkability.Value = nearest.node.Walkable;
 		}
 		
 		public override void OnUpdate() 

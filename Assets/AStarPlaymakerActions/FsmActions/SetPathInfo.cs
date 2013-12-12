@@ -51,12 +51,12 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public FsmObject nnConstraint;
 
 		[ActionSection("Nodes...s")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		[Tooltip("Constraint for how to search for nodes. ")]	
 		public FsmObject nodes;
 
 		[ActionSection("NodeRunData")]
-		[ObjectType(typeof(FsmNodeRunData))]
+		[ObjectType(typeof(FsmPathHandler))]
 		[Tooltip("Constraint for how to search for nodes. ")]	
 		public FsmObject runData;
 		
@@ -110,8 +110,8 @@ namespace HutongGames.PlayMaker.Pathfinding
 			path.turnRadius = turnRadius.Value;
 			path.recycled = recycled.Value;
             nnConstraint.Value = new FsmNNConstraint { Value = path.nnConstraint };
-            nodes.Value = new FsmNodes { Value = path.path };
-            runData.Value = new FsmNodeRunData { Value = path.runData };		
+            nodes.Value = new FsmGraphNodes { Value = path.path };
+            runData.Value = new FsmPathHandler { Value = path.runData };		
 		}
 	 
 		public override void OnUpdate() 

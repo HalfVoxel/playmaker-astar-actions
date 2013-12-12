@@ -11,7 +11,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 
 		[ActionSection("Input")]
 		[RequiredField]
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		[Tooltip("The node")]	
 		public FsmObject node;
 		
@@ -62,7 +62,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	  
 		public override void OnEnter() 
 	  	{			
-			var underlyingFsmNode = node.Value as FsmNode;
+			var underlyingFsmNode = node.Value as FsmGraphNode;
 			if(underlyingFsmNode == null || underlyingFsmNode.Value == null) 
 			{
 				Debug.Log("input invalid. Make sure the node is properly assigned.");
@@ -78,7 +78,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	  
 		public void GetInfoFromNode()
 		{		
-			var underlingNode = (node.Value as FsmNode).Value;
+			var underlingNode = (node.Value as FsmGraphNode).Value;
 			
 			nodeIndex.Value = underlingNode.GetNodeIndex();			
 			penalty.Value = (int)underlingNode.penalty;			
@@ -90,7 +90,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			position.Value *= Int3.PrecisionFactor;
 			
 			if (!connectedNodes.IsNone)
-			{ (connectedNodes.Value as FsmNodes).Value = underlingNode.connections.ToList(); }
+			{ (connectedNodes.Value as FsmGraphNodes).Value = underlingNode.connections.ToList(); }
 
 		    var currentNavGraph = AstarPath.active.graphs[underlingNode.graphIndex];
             var newNavGraph = new FsmNavGraph { Value = currentNavGraph };

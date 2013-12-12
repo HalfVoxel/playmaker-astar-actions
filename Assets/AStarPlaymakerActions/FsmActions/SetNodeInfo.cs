@@ -10,7 +10,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	{
 		[ActionSection("Input")]
 		[RequiredField]
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		[Tooltip("The node")]	
 		public FsmObject node;
 		
@@ -39,7 +39,7 @@ namespace HutongGames.PlayMaker.Pathfinding
       
 		public override void OnEnter() 
 	  	{
-			var fsmNode = node.Value as FsmNode;
+			var fsmNode = node.Value as FsmGraphNode;
             if (fsmNode == null || fsmNode.Value == null) 
 			{
 				Finish(); 
@@ -59,7 +59,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	  
 		public void SetInfoOnNode()
 		{
-			var fsmNode = node.Value as FsmNode;
+			var fsmNode = node.Value as FsmGraphNode;
             if(fsmNode == null)
             { throw new NullReferenceException("The node is null"); }
 			

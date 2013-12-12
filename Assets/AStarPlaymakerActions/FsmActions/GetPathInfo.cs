@@ -58,12 +58,12 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public FsmObject nnConstraint;
 
 		[ActionSection("Nodes...s")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		[Tooltip("Constraint for how to search for nodes. ")	]
 		public FsmObject nodes;
 
 		[ActionSection("NodeRunData")]
-		[ObjectType(typeof(FsmNodeRunData))]
+		[ObjectType(typeof(FsmPathHandler))]
 		[Tooltip("Constraint for how to search for nodes. ")	]
 		public FsmObject runData;
 		
@@ -139,11 +139,11 @@ namespace HutongGames.PlayMaker.Pathfinding
 		    nnConstraint.Value = fsmNnConstraint;
 			
 			//Nodes[]
-			var fsmNodes = new FsmNodes { Value = fsmPath.Value.path };
+			var fsmNodes = new FsmGraphNodes { Value = fsmPath.Value.path };
 		    nodes.Value = fsmNodes;
 			
 			//NodeRunData
-			var fsmNodeRunData = new FsmNodeRunData { Value = fsmPath.Value.runData };
+			var fsmNodeRunData = new FsmPathHandler { Value = fsmPath.Value.runData };
 		    runData.Value = fsmNodeRunData;
 		}
 	  

@@ -1,7 +1,6 @@
 using HutongGames.PlayMaker.Extensions;
 using UnityEngine;
 using Pathfinding;
-using Pathfinding.Nodes;
 using System.Collections.Generic;
 
 namespace HutongGames.PlayMaker.Pathfinding
@@ -19,9 +18,9 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[Tooltip("Should all nodes be set to walkable, or unwalkable?")]
 		public FsmBool walkability;
-		
-		private Node node;
-		private List<Node> nodes;
+
+        private GraphNode node;
+        private List<GraphNode> nodes;
 		private Bounds bounds;
 		private GameObject targetGameObject;
 		private GridGraph graph;
@@ -36,7 +35,7 @@ namespace HutongGames.PlayMaker.Pathfinding
         {
 			targetGameObject = localGameObject.OwnerOption == OwnerDefaultOption.UseOwner ? Owner : localGameObject.GameObject.Value;
 			bounds = targetGameObject.renderer.bounds; // get object's bounds
-			node = AstarPath.active.GetNearest(targetGameObject.transform.position).node as Node; // get one node to start with
+            node = AstarPath.active.GetNearest(targetGameObject.transform.position).node; // get one node to start with
 			Debug.Log(node);
 			
 			if(node.GetType() == typeof(GridNode) )
@@ -57,9 +56,9 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		void UpdateWalkabilityInGridArea()
 		{
-			nodes = new List<Node>();
+			nodes = new List<GraphNode>();
 			nodes.Add(node);
-			graph = AstarPath.active.graphs[node.graphIndex] as GridGraph;
+			graph = AstarPath.active.graphs[node.GraphIndex] as GridGraph;
 			
 
 			var graphUpdateShape = new GraphUpdateShape(); 
@@ -82,7 +81,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		void UpdateWalkabilityInArea() 
         {
-			nodes = new List<Node>();
+            nodes = new List<GraphNode>();
 			nodes.Add(node);
 			
 			var allNodes = AstarPath.active.graphs[node.graphIndex].nodes; // get all nodes, no .ToList(); to save performance (save wherever you can :D )
@@ -91,9 +90,9 @@ namespace HutongGames.PlayMaker.Pathfinding
             
 			Debug.Log("i" + nodes.Count);
         }
-		
-		
-		public void CheckNode(Node currentNode)
+
+
+        public void CheckNode(GraphNode currentNode)
         {
             var nodePosition = new Vector3(currentNode.position.x, currentNode.position.y, currentNode.position.z);
             var normalisedNodePosition = nodePosition * Int3.PrecisionFactor;

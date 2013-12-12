@@ -24,13 +24,13 @@ namespace HutongGames.PlayMaker.Pathfinding
             var path = (inputPath.Value as FsmPath).Value;
             var prevPos = new Vector3(0f, 0f, 0f);
 
-            foreach (Node node in path.path)
+            foreach (var node in path.path)
             {
                 var nodePosition = new Vector3(node.position.x, node.position.y, node.position.z)*Int3.PrecisionFactor;
                 if (prevPos != new Vector3(0f, 0f, 0f))
                 {
                     var distance = (nodePosition - prevPos).magnitude;
-                    var cost = Math.Exp(costDependendSpeed.Value*node.penalty);
+                    var cost = Math.Exp(costDependendSpeed.Value*node.Penalty);
                     estimatedTime.Value += (distance*(float)cost)/speed.Value;
                 }
                 prevPos = nodePosition;

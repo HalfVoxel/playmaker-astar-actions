@@ -1,4 +1,4 @@
-using Pathfinding.Nodes;
+using Pathfinding;
 
 namespace HutongGames.PlayMaker.Pathfinding
 {

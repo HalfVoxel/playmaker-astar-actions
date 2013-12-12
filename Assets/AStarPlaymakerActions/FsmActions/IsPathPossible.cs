@@ -15,7 +15,7 @@ namespace HutongGames.PlayMaker.Pathfinding
         public FsmBool PathIsPossible;
         public FsmBool everyFrame;
 
-        private Node startNode, endNode;
+        private GraphNode startNode, endNode;
    
 		public override void OnEnter() 
         {

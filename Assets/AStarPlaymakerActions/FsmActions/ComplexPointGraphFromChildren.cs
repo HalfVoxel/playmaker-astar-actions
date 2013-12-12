@@ -33,7 +33,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[ActionSection("Output : Nodes...s")]
 		[Tooltip("If you're using a grid graph, this will be what you need.")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		public FsmObject Nodes; 
 		
 		[Tooltip("If true, this always creates a new PointGraph. If False, this adds to the current PointGraph in the graph variable.") ]
@@ -79,7 +79,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			pointGraph.name = name.Value;
             pointGraph.ScanGraph();
 
-            Nodes.Value = new FsmNodes { Value = pointGraph.nodes.ToList() };
+            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList() };
 			AstarPath.active.FloodFill ();
 		}		  
    	}	

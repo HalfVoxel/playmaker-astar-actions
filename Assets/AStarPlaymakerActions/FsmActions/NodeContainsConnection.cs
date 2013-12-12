@@ -11,7 +11,7 @@ namespace Assets.AStarPlaymakerActions.FsmPathfinding
 	public class NodeContainsConnection : FsmStateAction
 	{
 		[ActionSection("Any type of node.")]
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		[Tooltip("node1")]	
 		public FsmObject node;
 		
@@ -30,8 +30,8 @@ namespace Assets.AStarPlaymakerActions.FsmPathfinding
       
 		public override void OnEnter() 
 	  	{
-			var sourceFsmNode = node.Value as FsmNode;
-			var nodeToCheck = node2.Value as FsmNode; 
+			var sourceFsmNode = node.Value as FsmGraphNode;
+			var nodeToCheck = node2.Value as FsmGraphNode; 
 			if(sourceFsmNode == null || nodeToCheck == null || (sourceFsmNode.Value == null) || (nodeToCheck.Value == null)) 
 			{
 				Debug.Log("Input incomplete, node not valid or does not exist. Make sure you assigned it properly.");
@@ -39,8 +39,8 @@ namespace Assets.AStarPlaymakerActions.FsmPathfinding
 				return;
 			}
 			
-			var a = (node.Value as FsmNode).Value;
-			connected.Value = a.ContainsConnection(node2.GetAnythingShallow() as Node); 
+			var a = (node.Value as FsmGraphNode).Value;
+			connected.Value = a.ContainsConnection(node2.GetAnythingShallow() as GraphNode); 
 			Finish();	
 		} 
    	}

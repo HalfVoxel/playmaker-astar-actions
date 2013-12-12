@@ -67,7 +67,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public FsmString searchTag;
 		
 		[Tooltip("All nodes this graph contains. They are not the same type as the nodes from the path, though they are extensions")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		public FsmObject nodes;
 		
 		public FsmBool everyFrame;
@@ -127,7 +127,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			{ navGraph.name = name.Value; }
 			
 			if (!nodes.IsNone)
-			{ navGraph.nodes = (nodes.Value as FsmNodes).Value.ToArray(); }
+			{ navGraph.nodes = (nodes.Value as FsmGraphNodes).Value.ToArray(); }
 			
 			if (!open.IsNone)
 			{ navGraph.open = open.Value; }

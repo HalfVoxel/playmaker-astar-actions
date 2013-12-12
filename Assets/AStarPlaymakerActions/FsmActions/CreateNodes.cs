@@ -20,7 +20,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[ActionSection ("Output : Nodes...s")]
 		[Tooltip("A list of the newly created nodes")]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		public FsmObject nodes;
 		
 		public FsmBool everyFrame;
@@ -54,8 +54,8 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public void CreateNodesForGraph()
 		{
 			var createdNodes = cachedNavGraph.CreateNodes(number.Value);
-			nodes.Value = new FsmNodes();
-			(nodes.Value as FsmNodes).Value = createdNodes.ToList();
+			nodes.Value = new FsmGraphNodes();
+			(nodes.Value as FsmGraphNodes).Value = createdNodes.ToList();
             cachedNavGraph.ScanGraph();
 		}
 		

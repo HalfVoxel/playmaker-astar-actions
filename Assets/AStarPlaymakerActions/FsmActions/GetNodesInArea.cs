@@ -24,12 +24,12 @@ namespace HutongGames.PlayMaker.Pathfinding
 
 		[ActionSection("Output")]
 		[RequiredField]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		[Tooltip("All the nodes within the area")]
 		public FsmObject nodesOutput;
-		
-		private Node node;
-		private List<Node> nodes;
+
+        private GraphNode node;
+        private List<GraphNode> nodes;
 		private int index;
 		private Bounds bounds;
 		private GameObject targetGameObject;
@@ -54,16 +54,16 @@ namespace HutongGames.PlayMaker.Pathfinding
 			else 
 			{
 				UpdateNodesInArea();
-				nodesOutput.Value = new FsmNodes {Value = nodes};
+				nodesOutput.Value = new FsmGraphNodes {Value = nodes};
 			}
 
-			Debug.Log("Count in Area :" + (nodesOutput.Value as FsmNodes).Value.Count);
+			Debug.Log("Count in Area :" + (nodesOutput.Value as FsmGraphNodes).Value.Count);
 			Finish();
         } 
 		
 		void UpdateNodesInGridGraph() // this is the optimized version. Other graphs cannot be optimised this way because they have irregular structures unfortunately. Still, we shouldn't miss on the advantages of this specific graph type, so I included it specifically.
 		{
-			nodes = new List<Node> {node};
+            nodes = new List<GraphNode> { node };
 		    var graph = AstarPath.active.graphs[node.graphIndex] as GridGraph;
 			
 			var graphUpdateShape = new GraphUpdateShape(); 
@@ -79,23 +79,23 @@ namespace HutongGames.PlayMaker.Pathfinding
 			
 			if(getWalkableOnly.Value)
 			{
-				var connected = new List<Node>();
+                var connected = new List<GraphNode>();
 				for(var i=0; i < nodes.Count(); i++ )
 				{
 					if(nodes[i].walkable)
 					{ connected.Add(nodes[i]); }
 				}
-				nodesOutput.Value = new FsmNodes {Value = connected};
+				nodesOutput.Value = new FsmGraphNodes {Value = connected};
 			}
 			else
-			{ nodesOutput.Value = new FsmNodes { Value = nodes }; }
+			{ nodesOutput.Value = new FsmGraphNodes { Value = nodes }; }
 
 			Debug.Log("i" + nodes.Count);
         }
 
         void UpdateNodesInArea() 
         {
-	        nodes = new List<Node> {node};
+            nodes = new List<GraphNode> { node };
 	        if(getWalkableOnly.Value) // actually, this does not get all walkables in the area, it just floods outwards along the walkables from the center of the gameObject. anyways, could be useful, so I left it in.
 	        {
 		        for(var i=0; i < nodes.Count; i++) 
@@ -108,8 +108,8 @@ namespace HutongGames.PlayMaker.Pathfinding
 		        { CheckNode(currentNode); }
 	        }
         }
-		
-        public void CheckNode(Node nodeToCheck)
+
+        public void CheckNode(GraphNode nodeToCheck)
         {
 	        var nodePosition = new Vector3(nodeToCheck.position.x,nodeToCheck.position.y,nodeToCheck.position.z);
 	        var normalisedNodePosition = nodePosition*Int3.PrecisionFactor;

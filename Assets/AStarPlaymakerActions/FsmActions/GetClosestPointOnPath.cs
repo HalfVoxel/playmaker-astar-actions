@@ -18,7 +18,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public FsmOwnerDefault DistanceFrom;
 
 		[ActionSection("Node") ]
-		[ObjectType(typeof(FsmNode)) ]
+		[ObjectType(typeof(FsmGraphNode)) ]
 		[Tooltip("closest node ")]	
 		public FsmObject node;
 
@@ -45,7 +45,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			}
 			
 			var currentDistance = 1/0f;
-			var closestNode = new FsmNode();
+			var closestNode = new FsmGraphNode();
             var pathNodes = underlyingFsmPath.Value.vectorPath;
 		    for (var i = 0; i < pathNodes.Count(); i++)
 		    {

@@ -9,7 +9,6 @@ Material:
   m_Name: AI
   m_Shader: {fileID: 4800000, guid: 5c4aad560e4da4a59aa10f6f2f6e84ce, type: 3}
   m_ShaderKeywords: []
-  m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:

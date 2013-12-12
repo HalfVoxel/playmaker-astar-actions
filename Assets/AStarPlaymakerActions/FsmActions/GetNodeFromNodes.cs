@@ -9,7 +9,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	{
 		[ActionSection("Input")]
 		[RequiredField]
-		[ObjectType(typeof(FsmNodes))]
+		[ObjectType(typeof(FsmGraphNodes))]
 		[Tooltip("The nodes ")	]
 		public FsmObject nodes;
 		
@@ -18,7 +18,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public FsmInt index ;
 		
 		[ActionSection("Output")]
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		[Tooltip("Any type of node")	]
 		public FsmObject node;
 
@@ -31,7 +31,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 	  
 		public override void OnEnter()  
 	  	{
-			var underlyingFsmNodes = nodes.Value as FsmNodes;
+			var underlyingFsmNodes = nodes.Value as FsmGraphNodes;
 			if(underlyingFsmNodes == null || (underlyingFsmNodes.Value == null) || !node.UseVariable) 
 			{
 				Debug.Log("No Input");
@@ -46,8 +46,8 @@ namespace HutongGames.PlayMaker.Pathfinding
 				return;
 			}
 
-            var currentNode = (nodes.Value as FsmNodes).Value[index.Value];
-            node.Value = new FsmNode { Value = currentNode };
+            var currentNode = (nodes.Value as FsmGraphNodes).Value[index.Value];
+            node.Value = new FsmGraphNode { Value = currentNode };
 			Finish();			
 		}  
    	}

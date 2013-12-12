@@ -10,14 +10,14 @@ namespace HutongGames.PlayMaker.Pathfinding
 	{
 		[ActionSection("Any type of node.")]
 		[Tooltip("The node to be changed")]
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		public FsmObject node;
 		
 		[Tooltip("The costs to traverse from one node to the other. The higher it is, the less likely the actor will use it. Useful for water or otherwise unpreferable grounds.")]
 		public FsmInt cost;		
 
 		[Tooltip("The neighbour node")]	
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		public FsmObject node2;
 		
 		[Tooltip("Normally this action creates a one way connection. With this activated, it performs the same action on node2 too.")]
@@ -42,11 +42,11 @@ namespace HutongGames.PlayMaker.Pathfinding
 	  
 		public void AddPathConnectionWithCost()
 		{
-			var sourceFsmNode = node.Value as FsmNode;
+			var sourceFsmNode = node.Value as FsmGraphNode;
             if(sourceFsmNode == null)
             { throw new NullReferenceException("Source FSM node is null"); }
 
-			var destinationFsmNode = node2.Value as FsmNode;
+			var destinationFsmNode = node2.Value as FsmGraphNode;
             if (destinationFsmNode == null)
             { throw new NullReferenceException("Destination FSM node is null"); }
 
@@ -57,10 +57,10 @@ namespace HutongGames.PlayMaker.Pathfinding
 				return;
 			}
 			
-			sourceFsmNode.Value.AddConnection(destinationFsmNode.Value, cost.Value);
+			sourceFsmNode.Value.AddConnection(destinationFsmNode.Value, (uint)cost.Value);
  
 			if (pingPong != null && pingPong.Value)
-			{ destinationFsmNode.Value.AddConnection(sourceFsmNode.Value, cost.Value);	}		
+			{ destinationFsmNode.Value.AddConnection(sourceFsmNode.Value, (uint)cost.Value);	}		
 		}
 		
 		public override void OnUpdate() 

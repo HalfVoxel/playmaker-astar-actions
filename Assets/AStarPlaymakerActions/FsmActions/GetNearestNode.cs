@@ -17,7 +17,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[ActionSection("Output")]
 		[Tooltip("The node ")]	
-		[ObjectType(typeof(FsmNode))]
+		[ObjectType(typeof(FsmGraphNode))]
 		public FsmObject node;
 		
 		public override void Reset() 
@@ -37,12 +37,12 @@ namespace HutongGames.PlayMaker.Pathfinding
 			
 			UpdateNearestNode();
 			
-			var fsmNode = node.Value as FsmNode;
+			var fsmNode = node.Value as FsmGraphNode;
             if(fsmNode == null)
             { throw new NullReferenceException("The node contains no data"); }
 
 			var underlyingNodeValue = fsmNode.Value;
-			Debug.Log(underlyingNodeValue.area);
+			Debug.Log(underlyingNodeValue.Area);
 			
 			if (!everyFrame.Value)
 			{ Finish(); }			
@@ -51,7 +51,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		public void UpdateNearestNode()
 		{
             var nearestNode = AstarPath.active.GetNearest(Position.Value).node;
-            node.Value = new FsmNode { Value = nearestNode };
+            node.Value = new FsmGraphNode { Value = nearestNode };
 		}
 		
 		public override void OnUpdate()

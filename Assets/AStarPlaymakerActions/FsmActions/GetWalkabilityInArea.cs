@@ -30,9 +30,9 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		[Tooltip("The number of unwalkable nodes in the selection")]
 		public FsmInt unwalkable;
-		
-		private Node node;
-		private List<Node> nodes;
+
+        private GraphNode node;
+        private List<GraphNode> nodes;
 		private Bounds bounds;
 		private GameObject targetGameObject;
    
@@ -76,7 +76,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		private void GetWalkabilityForGridNode() 
 		{
-			nodes = new List<Node> { node };
+            nodes = new List<GraphNode> { node };
 		    var graph = AstarPath.active.graphs[node.graphIndex] as GridGraph;
 			
 			var graphUpdateShape = new GraphUpdateShape(); 
@@ -114,7 +114,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		
 		private void GetWalkability() 
         {
-			nodes = new List<Node>();
+            nodes = new List<GraphNode>();
 			nodes.Add(node);
 
 			if(getWalkableOnly.Value)
@@ -130,9 +130,9 @@ namespace HutongGames.PlayMaker.Pathfinding
 			}
 			
 			Debug.Log("i" + nodes.Count);
-		}		
-		
-		public void CheckNode(Node currentNode)
+		}
+
+        public void CheckNode(GraphNode currentNode)
         {
             var nodePosition = new Vector3(currentNode.position.x, currentNode.position.y, currentNode.position.z);
             var normalisedNodePosition = nodePosition * Int3.PrecisionFactor;

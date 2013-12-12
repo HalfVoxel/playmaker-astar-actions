@@ -83,3 +83,6 @@
 - Removed unused code
 - Removed class level variables which had short lifetimes in favor of method scope variables
 - Reworked the Dummy classes to use the same namespaces and names as the PRO version classes to make the unitypackage easier to manage
+
+0v902
+- Fixed issues with the new A* package 3.4
