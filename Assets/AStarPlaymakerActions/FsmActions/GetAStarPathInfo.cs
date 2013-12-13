@@ -36,10 +36,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 		[ActionSection("Integers")]
 		[Tooltip ("The last area index which was used. ")]
 		public FsmInt lastUniqueAreaIndex;
-		
-		[Tooltip ("Number of threads currently active. ")]		
-		public FsmInt ActiveThreadsCount;
-		
+			
 		[Tooltip ("	Number of parallel pathfinders. ")]		
 		public FsmInt NumParallelThreads;
         
@@ -70,7 +67,6 @@ namespace HutongGames.PlayMaker.Pathfinding
 			IsUsingMultithreading = null;
 			IsAnyGraphUpdatesQueued = null;
 			lastUniqueAreaIndex = null;
-			ActiveThreadsCount = null;
 			NumParallelThreads = null;
 			graphs = null;
 			Version = null;
@@ -106,10 +102,7 @@ namespace HutongGames.PlayMaker.Pathfinding
             { IsAnyGraphUpdatesQueued.Value = currentAstarPath.IsAnyGraphUpdatesQueued; }			
 
 			if(!lastUniqueAreaIndex.IsNone)
-            { lastUniqueAreaIndex.Value = currentAstarPath.lastUniqueAreaIndex; }	
-			
-			if(!ActiveThreadsCount.IsNone)
-			{ ActiveThreadsCount.Value = AstarPath.ActiveThreadsCount; }	
+            { lastUniqueAreaIndex.Value = (int)currentAstarPath.lastUniqueAreaIndex; }	
 			
 			if(!NumParallelThreads.IsNone)
 			{ NumParallelThreads.Value = AstarPath.NumParallelThreads;	}	

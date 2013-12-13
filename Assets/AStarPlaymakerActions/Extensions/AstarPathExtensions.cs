@@ -25,7 +25,6 @@ namespace HutongGames.PlayMaker.Extensions
             { AstarPath.OnGraphPostScan (graph); }
 		
 		    AstarPath.active.FloodFill ();
-            AstarPath.active.DataUpdate();
 	    }
     }
 }
