@@ -82,8 +82,8 @@ namespace Pathfinding {
 		 */
 		GameObject[] nodeGameObjects;
 		
-		PointNode[] nodes;
-		int nodeCount;
+		public PointNode[] nodes;
+		public int nodeCount;
 		
 		
 		public override void GetNodes (GraphNodeDelegateCancelable del) {

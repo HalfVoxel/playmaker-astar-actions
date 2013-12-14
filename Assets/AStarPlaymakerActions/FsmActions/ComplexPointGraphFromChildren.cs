@@ -79,7 +79,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 			pointGraph.name = name.Value;
             pointGraph.ScanGraph();
 
-            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList() };
+            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList<GraphNode>() };
 			AstarPath.active.FloodFill ();
 		}		  
    	}	

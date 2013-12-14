@@ -82,13 +82,15 @@ namespace HutongGames.PlayMaker.Pathfinding
 			pointGraph.initialPenalty = (uint)cost.Value;
 			pointGraph.name = name.Value;
             pointGraph.ScanGraph();
+
+		    var costValue = (uint)cost.Value;
 			
 			if(width.Value <= 1)
 			{
 				for (var i =1; i<pointGraph.nodes.Length; i++)
 				{
-					pointGraph.nodes[i].AddConnection(pointGraph.nodes[i-1], cost.Value);
-					pointGraph.nodes[i-1].AddConnection(pointGraph.nodes[i], cost.Value);	
+                    pointGraph.nodes[i].AddConnection(pointGraph.nodes[i - 1], costValue);
+                    pointGraph.nodes[i - 1].AddConnection(pointGraph.nodes[i], costValue);	
 				}
 	
 				if (connectStart.Value || connectEnd.Value)
@@ -114,58 +116,58 @@ namespace HutongGames.PlayMaker.Pathfinding
 					{
 						if(i+width.Value <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value], cost.Value);
-							pointGraph.nodes[i+width.Value].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value], costValue);
+                            pointGraph.nodes[i + width.Value].AddConnection(pointGraph.nodes[i], costValue);
 						}
 							
 						if(i+width.Value -1 <pointGraph.nodes.Length) 
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value-1], cost.Value);
-							pointGraph.nodes[i + width.Value-1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value - 1], costValue);
+                            pointGraph.nodes[i + width.Value - 1].AddConnection(pointGraph.nodes[i], costValue);
 						}						
 					}
 					else if(i ==0 ||  0 == i%width.Value)//1 // if i is 0 or a multiple of width
 					{
 						if(i+width.Value <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value], cost.Value);
-							pointGraph.nodes[i+width.Value].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value], costValue);
+                            pointGraph.nodes[i + width.Value].AddConnection(pointGraph.nodes[i], costValue);
 						}
 						if(i+1 <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+1], cost.Value);
-							pointGraph.nodes[i + 1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + 1], costValue);
+                            pointGraph.nodes[i + 1].AddConnection(pointGraph.nodes[i], costValue);
 						}
 						if(i+width.Value+1 <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value+1], cost.Value);
-							pointGraph.nodes[i + width.Value + 1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value + 1], costValue);
+                            pointGraph.nodes[i + width.Value + 1].AddConnection(pointGraph.nodes[i], costValue);
 						}
 					}
 					else //3
 					{
 						if(i + width.Value <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value], cost.Value);
-							pointGraph.nodes[i+width.Value].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value], costValue);
+                            pointGraph.nodes[i + width.Value].AddConnection(pointGraph.nodes[i], costValue);
 						}
 						
 						if(i+1 <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+1], cost.Value);
-							pointGraph.nodes[i + 1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + 1], costValue);
+                            pointGraph.nodes[i + 1].AddConnection(pointGraph.nodes[i], costValue);
 							}
 						
 						if(i+width.Value+1 <pointGraph.nodes.Length)
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value+1], cost.Value);
-							pointGraph.nodes[i + width.Value + 1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value + 1], costValue);
+                            pointGraph.nodes[i + width.Value + 1].AddConnection(pointGraph.nodes[i], costValue);
 						}
 						
 						if(i+width.Value -1 <pointGraph.nodes.Length) 
 						{
-							pointGraph.nodes[i].AddConnection(pointGraph.nodes[i+width.Value-1], cost.Value);
-							pointGraph.nodes[i + width.Value - 1].AddConnection(pointGraph.nodes[i], cost.Value);
+                            pointGraph.nodes[i].AddConnection(pointGraph.nodes[i + width.Value - 1], costValue);
+                            pointGraph.nodes[i + width.Value - 1].AddConnection(pointGraph.nodes[i], costValue);
 						}
 					}					
 				}
@@ -186,7 +188,7 @@ namespace HutongGames.PlayMaker.Pathfinding
 				}			
 			}
 
-            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList() };
+            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList<GraphNode>() };
             AstarPath.active.FloodFill();
 		}
 		
