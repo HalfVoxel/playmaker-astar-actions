@@ -77,10 +77,13 @@ namespace HutongGames.PlayMaker.Pathfinding
 		 	pointGraph.maxDistance = maxDistance.Value;
 			pointGraph.initialPenalty = (uint)cost.Value;
 			pointGraph.name = name.Value;
-            pointGraph.ScanGraph();
-
-            Nodes.Value = new FsmGraphNodes { Value = pointGraph.nodes.ToList<GraphNode>() };
-			AstarPath.active.FloodFill ();
+			// Scan all graphs, not really recommended to scan a single graph since the AstarPath.Scan
+			// method does a lot of pre- and post-processing.
+            		pointGraph.active.Scan();
+			
+			//pointGraph.ScanGraph ();
+			Nodes.Value = new FsmNodes { Value = pointGraph.nodes.ToList() };
+			//AstarPath.active.FloodFill ();
 		}		  
    	}	
 }
